@@ -117,7 +117,7 @@ if not os.path.exists('Agents'):
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.connect(('8.8.8.8', 1))  # connect() for UDP doesn't send packets
 local_ip_address = s.getsockname()[0]
-print('In case of any bugs file an issue in the github repository or contact @virusz4274 ')
+print('In case of any bugs file an issue in the github repository or contact telegram @virusz4274 ')
 print('Use the following details to connect using app')
 print('IP ADDRESS :',local_ip_address)
 print('PORT : 4274')
