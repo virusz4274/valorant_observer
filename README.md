@@ -3,12 +3,16 @@
 This repository container two items the dasboard app is a flutter based app which will work on Android and iOS 
 the server app is a python based application
 
+## NOTE
+
+Your windows defender or antimalware / antivirus software might detect this as malware, its a false positive the release bundles will be submitted by us to some of these companies and after they verify it will no longer be detected as malware. This is because of the application being new and havent seen before by any of these anti malware/virus suites.
+
 # GUIDE
 
 * Download the apk and server.zip 
 * Install apk
 * Unzip the server.zip to your desired location
-* Run app.exe and server.exe ( Both should be running in order to work, Give firewall access to both app.exe and server.exe make sure that private and public is ticked )
+* Run valorant_observer.exe and server.exe ( Both should be running in order to work, Give firewall access to both valorant_observer.exe and server.exe make sure that private and public is ticked )
 * Open the dashboard App in mobile 
 * Enter the IP Address shown in app.exe console to Server Address field
 * Enter the PORT shown in app.exe console to Server Port field
