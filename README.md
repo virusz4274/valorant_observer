@@ -17,12 +17,16 @@ the server app is a python based application
 * If agents are not loaded properly follow the Refresh / Restart Instruction
 * Tap on buttons and you can see it working, if not working make sure window focus is on valorant ( alt + tab to valorant )
 
-### Refresh / Restart Mobile App
+### Refresh / Restart Dashboard Mobile App
 
 * On the dasboard at left bottom there is a settings button tap on that  
 * to refresh tap on refresh button ( 1st button )
 * to restart app tap on restart button ( 2nd button )
 
+
+# ISSUES
+
+Create an issue here in github, or contact me through telegram @virusz4274
 
 # BUILD
 
