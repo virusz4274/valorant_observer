@@ -32,9 +32,6 @@ migrate_working_dir/
 .pub/
 /build/
 
-# Web related
-lib/generated_plugin_registrant.dart
-
 # Symbolication related
 app.*.symbols
 
@@ -42,6 +39,6 @@ app.*.symbols
 app.*.map.json
 
 # Android Studio will place build artifacts here
-valorant_observer_dashboard/android/app/debug
-valorant_observer_dashboard/android/app/profile
-valorant_observer_dashboard/android/app/release
+/android/app/debug
+/android/app/profile
+/android/app/release
