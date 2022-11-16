@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:restart_app/restart_app.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 var serverip = 'nodata';
@@ -284,16 +285,18 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
               GestureDetector(
                 onTap: () {},
-                child: Image.network(
-                  'http://$server_address/Agents/agent1.png',
-                  scale: scale_agent,
+                child: Image.asset(
+                  'assets/icons/broken.png',
+                  scale: scale_icon,
+                  color: Colors.red,
                 ),
               ),
               GestureDetector(
                 onTap: () {},
-                child: Image.network(
-                  'http://$server_address/Agents/agent1.png',
-                  scale: scale_agent,
+                child: Image.asset(
+                  'assets/icons/broken.png',
+                  scale: scale_icon,
+                  color: Colors.red,
                 ),
               ),
             ],
@@ -325,43 +328,60 @@ class TemporaryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const scale_icon = 2.0;
-    return Container(
-      child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            GestureDetector(
-              onTap: () {
-                sleep(Duration(seconds: 2));
-                Navigator.popAndPushNamed(context, '/dashboard');
-              },
-              child: Image.asset(
-                'assets/icons/refresh.png',
-                scale: scale_icon,
-                color: Colors.red,
-              ),
+    return Scaffold(
+        body: Container(
+          child: Center(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    sleep(Duration(seconds: 2));
+                    Navigator.popAndPushNamed(context, '/dashboard');
+                  },
+                  child: Image.asset(
+                    'assets/icons/refresh.png',
+                    scale: scale_icon,
+                    color: Colors.red,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Restart.restartApp();
+                  },
+                  child: Image.asset(
+                    'assets/icons/reboot.jpg',
+                    scale: scale_icon,
+                    colorBlendMode: BlendMode.overlay,
+                    color: Colors.red,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () async {
+                    final Uri url = Uri.parse(
+                        'https://github.com/virusz4274/valorant_observer');
+                    if (!await launchUrl(url)) {
+                      throw 'Could not launch $url';
+                    }
+                  },
+                  child: Image.asset(
+                    'assets/icons/download.png',
+                    scale: scale_icon,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
             ),
-            GestureDetector(
-              onTap: () {
-                Restart.restartApp();
-              },
-              child: Image.asset(
-                'assets/icons/score.png',
-                scale: scale_icon,
-                color: Colors.red,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {},
-              child: Image.asset(
-                'assets/icons/download.png',
-                scale: scale_icon,
-                color: Colors.red,
-              ),
-            ),
-          ],
+          ),
         ),
-      ),
-    );
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.transparent,
+          child: Text(
+            'Developed by virusz4274, Powered by COARDE',
+            style: TextStyle(fontSize: 12, color: Colors.white),
+          ),
+          elevation: 0,
+        ));
   }
 }
