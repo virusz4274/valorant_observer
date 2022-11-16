@@ -22,18 +22,18 @@ migrate_working_dir/
 #.vscode/
 
 # Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-.packages
-.pub-cache/
-.pub/
-/build/
+valorant_observer_dashboard/**/doc/api/
+valorant_observer_dashboard/**/ios/Flutter/.last_build_id
+valorant_observer_dashboard/.dart_tool/
+valorant_observer_dashboard/.flutter-plugins
+valorant_observer_dashboard/.flutter-plugins-dependencies
+valorant_observer_dashboard/.packages
+valorant_observer_dashboard/.pub-cache/
+valorant_observer_dashboard/.pub/
+valorant_observer_dashboard/build/
 
 # Web related
-lib/generated_plugin_registrant.dart
+valorant_observer_dashboard/lib/generated_plugin_registrant.dart
 
 # Symbolication related
 app.*.symbols
@@ -45,3 +45,10 @@ app.*.map.json
 valorant_observer_dashboard/android/app/debug
 valorant_observer_dashboard/android/app/profile
 valorant_observer_dashboard/android/app/release
+
+
+# python server app
+valorant_observer_server/build/
+valorant_observer_server/dist/
+valorant_observer_server/*.png
+valorant_observer_server/Agents/*.png
