@@ -52,3 +52,8 @@ valorant_observer_server/build/
 valorant_observer_server/dist/
 valorant_observer_server/*.png
 valorant_observer_server/Agents/*.png
+
+
+#new server app
+server-test/*.png
+server-test/screenshots/*.png
