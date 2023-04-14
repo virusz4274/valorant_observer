@@ -12,9 +12,10 @@ opencv-python-headless = "*"
 scikit-learn = "*"
 pillow = "*"
 tqdm = "*"
+pyautogui = "*"
+websockets = "*"
 
 [dev-packages]
-yapf = "*"
 
 [requires]
-python_version = "3.11"
+python_version = "3.10"

@@ -142,8 +142,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 onTap: () {
                   channel.sink.add('Agent1');
                 },
-                child: Image.network(
-                  'http://$server_address/Agents/agent1.png',
+                child: Image.asset(
+                  'assets/agents/Yoru_icon.webp',
                   scale: scale_agent,
                 ),
               ),
@@ -151,8 +151,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 onTap: () {
                   channel.sink.add('Agent2');
                 },
-                child: Image.network(
-                  'http://$server_address/Agents/agent2.png',
+                child: Image.asset(
+                  'assets/agents/Yoru_icon.webp',
                   scale: scale_agent,
                 ),
               ),
@@ -160,8 +160,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 onTap: () {
                   channel.sink.add('Agent7');
                 },
-                child: Image.network(
-                  'http://$server_address/Agents/agent7.png',
+                child: Image.asset(
+                  'assets/agents/Yoru_icon.webp',
                   scale: scale_agent,
                 ),
               ),
@@ -169,8 +169,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 onTap: () {
                   channel.sink.add('Agent6');
                 },
-                child: Image.network(
-                  'http://$server_address/Agents/agent6.png',
+                child: Image.asset(
+                  'assets/agents/Yoru_icon.webp',
                   scale: scale_agent,
                 ),
               ),
@@ -183,8 +183,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 onTap: () {
                   channel.sink.add('Agent3');
                 },
-                child: Image.network(
-                  'http://$server_address/Agents/agent3.png',
+                child: Image.asset(
+                  'assets/agents/Yoru_icon.webp',
                   scale: scale_agent,
                 ),
               ),
@@ -192,8 +192,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 onTap: () {
                   channel.sink.add('Agent4');
                 },
-                child: Image.network(
-                  'http://$server_address/Agents/agent4.png',
+                child: Image.asset(
+                  'assets/agents/Yoru_icon.webp',
                   scale: scale_agent,
                 ),
               ),
@@ -201,8 +201,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 onTap: () {
                   channel.sink.add('Agent9');
                 },
-                child: Image.network(
-                  'http://$server_address/Agents/agent9.png',
+                child: Image.asset(
+                  'assets/agents/Yoru_icon.webp',
                   scale: scale_agent,
                 ),
               ),
@@ -210,8 +210,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 onTap: () {
                   channel.sink.add('Agent8');
                 },
-                child: Image.network(
-                  'http://$server_address/Agents/agent8.png',
+                child: Image.asset(
+                  'assets/agents/Yoru_icon.webp',
                   scale: scale_agent,
                 ),
               ),
@@ -224,8 +224,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 onTap: () {
                   channel.sink.add('Agent5');
                 },
-                child: Image.network(
-                  'http://$server_address/Agents/agent5.png',
+                child: Image.asset(
+                  'assets/agents/Yoru_icon.webp',
                   scale: scale_agent,
                 ),
               ),
@@ -253,8 +253,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 onTap: () {
                   channel.sink.add('Agent10');
                 },
-                child: Image.network(
-                  'http://$server_address/Agents/agent10.png',
+                child: Image.asset(
+                  'assets/agents/Yoru_icon.webp',
                   scale: scale_agent,
                 ),
               ),

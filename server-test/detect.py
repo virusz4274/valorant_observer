@@ -83,7 +83,7 @@ def capture_and_save_first_segment(output_dir):
 
 
 # Example usage
-if __name__ == "__main__":
+def detectwithss():
     model_path = "character_classification_model.pth"
     data_dir = "./Agents/training"
 
@@ -110,15 +110,30 @@ if __name__ == "__main__":
     stop1 = 11
     start2 = 16
     stop2 = 21
+
+    defenders = {}
+    attackers = {}
     for i, (character_name, confidence) in enumerate(
             character_names_and_confidences[start1:stop1], start=start1):
         if confidence >= 50:
-            print(f"{i}: {character_name} (Confidence: {confidence:.2f}%)")
+            #print(f"{i}: {character_name} (Confidence: {confidence:.2f}%)")
+            agents = character_name
         else:
-            print(f"{i}: Not identified (Confidence: {confidence:.2f}%)")
+            #print(f"{i}: Not identified (Confidence: {confidence:.2f}%)")
+            agents = character_name
+        defenders[i - 5] = agents
     for i, (character_name, confidence) in enumerate(
             character_names_and_confidences[start2:stop2], start=start2):
         if confidence >= 50:
-            print(f"{i}: {character_name} (Confidence: {confidence:.2f}%)")
+            #print(f"{i}: {character_name} (Confidence: {confidence:.2f}%)")
+            agents = character_name
         else:
-            print(f"{i}: Not identified (Confidence: {confidence:.2f}%)")
+            #print(f"{i}: Not identified (Confidence: {confidence:.2f}%)")
+            agents = character_name
+        attackers[i - 15] = agents
+
+    print(defenders)
+    print(attackers)
+
+
+detectwithss()
