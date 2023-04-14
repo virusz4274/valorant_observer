@@ -8,13 +8,21 @@ import pyautogui
 #for finding local ip
 import socket
 
+import detect
+
+def initdashboard():
+    agents = detect.detectwithss()
+    defenders = agents[0]
+    attackers = agents[1]
+    allagents = {"defenders":defenders,"attackers":attackers}
+    return str(allagents)
 
 async def check(websocket):
     async for message in websocket:
         print(message)
         if message == 'init':
-            initdashboard()
-            await websocket.send('initialized')
+            allagents = initdashboard()
+            await websocket.send(allagents)
         if message == 'Agent1':
             pyautogui.press('1')
             await websocket.send('Key 1 Pressed')

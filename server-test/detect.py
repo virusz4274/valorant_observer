@@ -116,11 +116,11 @@ def detectwithss():
     for i, (character_name, confidence) in enumerate(
             character_names_and_confidences[start1:stop1], start=start1):
         if confidence >= 50:
-            #print(f"{i}: {character_name} (Confidence: {confidence:.2f}%)")
+            print(f"{i}: {character_name} (Confidence: {confidence:.2f}%)")
             agents = character_name
         else:
             #print(f"{i}: Not identified (Confidence: {confidence:.2f}%)")
-            agents = character_name
+            agents = "nid"
         defenders[i - 5] = agents
     for i, (character_name, confidence) in enumerate(
             character_names_and_confidences[start2:stop2], start=start2):
@@ -129,11 +129,13 @@ def detectwithss():
             agents = character_name
         else:
             #print(f"{i}: Not identified (Confidence: {confidence:.2f}%)")
-            agents = character_name
+            agents = "nid"
         attackers[i - 15] = agents
 
-    print(defenders)
-    print(attackers)
+    #print(defenders)
+    #print(attackers)
+
+    return [defenders, attackers]
 
 
 detectwithss()
