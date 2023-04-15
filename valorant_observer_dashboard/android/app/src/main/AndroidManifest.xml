@@ -1,10 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.coarde.valorant_observer_dashboard">
-    <uses-permission android:name="android.permission.INTERNET"/>
+    package="tech.virusz4274.valorant_observer_dashboard">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="Valorant Observer"
+        android:label="valorant_observer_dashboard"
         android:name="${applicationName}"
-        android:icon="@mipmap/launcher_icon"
+        android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"

@@ -54,7 +54,7 @@ def split_image_into_segments(image, num_segments):
         right = (i + 1) * segment_width
         bottom = height
         segment = image.crop((left, top, right, bottom))
-        segment.save(f"segment_{i}.png")
+        segment.save(f"screenshots/segment_{i}.png")
         segments.append(segment)
 
     return segments
@@ -105,7 +105,7 @@ def detectwithss():
         for segment in segments
     ]
 
-    print("The detected characters are:")
+    print("Detection started")
     start1 = 6
     stop1 = 11
     start2 = 16
@@ -136,6 +136,3 @@ def detectwithss():
     #print(attackers)
 
     return [defenders, attackers]
-
-
-detectwithss()
