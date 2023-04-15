@@ -16,6 +16,7 @@ pyautogui = "*"
 websockets = "*"
 fastapi = "*"
 uvicorn = {extras = ["standard"], version = "*"}
+pyinstaller = "*"
 
 [dev-packages]
 
