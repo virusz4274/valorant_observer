@@ -47,13 +47,7 @@ valorant_observer_dashboard/android/app/profile
 valorant_observer_dashboard/android/app/release
 
 
-# python server app
-valorant_observer_server/build/
-valorant_observer_server/dist/
-valorant_observer_server/*.png
-valorant_observer_server/Agents/*.png
 
-
-#new server app
-server-test/*.png
-server-test/screenshots/*.png
+#server app
+server/*.png
+server/screenshots/*.png

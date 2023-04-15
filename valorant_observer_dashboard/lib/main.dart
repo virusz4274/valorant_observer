@@ -117,7 +117,7 @@ class _DashboardState extends State<Dashboard> {
   String _data = '';
 
   Future<void> fetchAgents() async {
-    final agentsUrl = Uri.parse('http://10.0.0.158:8000/agents');
+    final agentsUrl = Uri.parse('http://$serverAddress/agents');
     try {
       final response = await http.get(agentsUrl);
       if (response.statusCode == 200) {
@@ -152,7 +152,25 @@ class _DashboardState extends State<Dashboard> {
   }
 
   Future<void> switchAgents(String agent) async {
-    final agentControlUrl = Uri.parse('http://10.0.0.158:8000/control/$agent');
+    HapticFeedback.vibrate();
+    HapticFeedback.vibrate();
+    final agentControlUrl = Uri.parse('http://$serverAddress/control/$agent');
+    try {
+      final response = await http.get(agentControlUrl);
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      _data = 'Error: $e';
+    }
+  }
+
+  Future<void> gameControl(String control) async {
+    HapticFeedback.vibrate();
+    HapticFeedback.vibrate();
+    final agentControlUrl = Uri.parse('http://$serverAddress/control/$control');
     try {
       final response = await http.get(agentControlUrl);
       if (response.statusCode == 200) {
@@ -167,8 +185,8 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    const scaleAgent = 1.2;
-    const scaleIcon = 2.0;
+    const scaleAgent = 1.15;
+    const scaleIcon = 2.1;
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -177,99 +195,126 @@ class _DashboardState extends State<Dashboard> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               GestureDetector(
-                onTap: () async {
-                  await switchAgents('Agent1');
+                onTap: () {
+                  switchAgents('Agent1');
                 },
-                child: Image.asset(
-                  agent1Image,
-                  scale: scaleAgent,
-                ),
-              ),
-              GestureDetector(
-                onTap: () async {
-                  await switchAgents('Agent2');
-                },
-                child: Image.asset(
-                  agent2Image,
-                  scale: scaleAgent,
-                ),
-              ),
-              GestureDetector(
-                onTap: () async {
-                  await switchAgents('Agent7');
-                },
-                child: Image.asset(
-                  agent7Image,
-                  scale: scaleAgent,
-                ),
-              ),
-              GestureDetector(
-                onTap: () async {
-                  await switchAgents('Agent6');
-                },
-                child: Image.asset(
-                  agent6Image,
-                  scale: scaleAgent,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              GestureDetector(
-                onTap: () async {
-                  await switchAgents('Agent3');
-                },
-                child: Image.asset(
-                  agent3Image,
-                  scale: scaleAgent,
-                ),
-              ),
-              GestureDetector(
-                onTap: () async {
-                  await switchAgents('Agent4');
-                },
-                child: Image.asset(
-                  agent4Image,
-                  scale: scaleAgent,
-                ),
-              ),
-              GestureDetector(
-                onTap: () async {
-                  await switchAgents('Agent9');
-                },
-                child: Image.asset(
-                  agent9Image,
-                  scale: scaleAgent,
-                ),
-              ),
-              GestureDetector(
-                onTap: () async {
-                  await switchAgents('Agent8');
-                },
-                child: Image.asset(
-                  agent8Image,
-                  scale: scaleAgent,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              GestureDetector(
-                onTap: () async {
-                  await switchAgents('Agent5');
-                },
-                child: Image.asset(
-                  agent5Image,
-                  scale: scaleAgent,
+                child: Container(
+                  color: Colors.greenAccent,
+                  child: Image.asset(
+                    agent1Image,
+                    scale: scaleAgent,
+                  ),
                 ),
               ),
               GestureDetector(
                 onTap: () {
-                  //channel.sink.add('Molly');
+                  switchAgents('Agent2');
+                },
+                child: Container(
+                  color: Colors.greenAccent,
+                  child: Image.asset(
+                    agent2Image,
+                    scale: scaleAgent,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  switchAgents('Agent7');
+                },
+                child: Container(
+                  color: Colors.redAccent,
+                  child: Image.asset(
+                    agent7Image,
+                    scale: scaleAgent,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  switchAgents('Agent6');
+                },
+                child: Container(
+                  color: Colors.redAccent,
+                  child: Image.asset(
+                    agent6Image,
+                    scale: scaleAgent,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  switchAgents('Agent3');
+                },
+                child: Container(
+                  color: Colors.greenAccent,
+                  child: Image.asset(
+                    agent3Image,
+                    scale: scaleAgent,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  switchAgents('Agent4');
+                },
+                child: Container(
+                  color: Colors.greenAccent,
+                  child: Image.asset(
+                    agent4Image,
+                    scale: scaleAgent,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  switchAgents('Agent9');
+                },
+                child: Container(
+                  color: Colors.redAccent,
+                  child: Image.asset(
+                    agent9Image,
+                    scale: scaleAgent,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  switchAgents('Agent8');
+                },
+                child: Container(
+                  color: Colors.redAccent,
+                  child: Image.asset(
+                    agent8Image,
+                    scale: scaleAgent,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  switchAgents('Agent5');
+                },
+                child: Container(
+                  color: Colors.greenAccent,
+                  child: Image.asset(
+                    agent5Image,
+                    scale: scaleAgent,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  gameControl('Molly');
                 },
                 child: Image.asset(
                   'assets/icons/incendiary.png',
@@ -279,7 +324,7 @@ class _DashboardState extends State<Dashboard> {
               ),
               GestureDetector(
                 onTap: () {
-                  //channel.sink.add('Cam');
+                  gameControl('Cam');
                 },
                 child: Image.asset(
                   'assets/icons/camera.png',
@@ -288,12 +333,15 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
               GestureDetector(
-                onTap: () async {
-                  await switchAgents('Agent10');
+                onTap: () {
+                  switchAgents('Agent10');
                 },
-                child: Image.asset(
-                  agent10Image,
-                  scale: scaleAgent,
+                child: Container(
+                  color: Colors.redAccent,
+                  child: Image.asset(
+                    agent10Image,
+                    scale: scaleAgent,
+                  ),
                 ),
               ),
             ],
@@ -310,17 +358,17 @@ class _DashboardState extends State<Dashboard> {
                 child: Image.asset(
                   'assets/icons/settings_refresh.png',
                   scale: scaleIcon,
-                  color: Colors.red,
+                  color: Colors.blueAccent,
                 ),
               ),
               GestureDetector(
                 onTap: () {
-                  //channel.sink.add('Score');
+                  gameControl('Score');
                 },
                 child: Image.asset(
                   'assets/icons/score.png',
                   scale: scaleIcon,
-                  color: Colors.red,
+                  color: Colors.blueAccent,
                 ),
               ),
               GestureDetector(
@@ -328,7 +376,7 @@ class _DashboardState extends State<Dashboard> {
                 child: Image.asset(
                   'assets/icons/broken.png',
                   scale: scaleIcon,
-                  color: Colors.red,
+                  color: Colors.blueAccent,
                 ),
               ),
               GestureDetector(
@@ -336,7 +384,7 @@ class _DashboardState extends State<Dashboard> {
                 child: Image.asset(
                   'assets/icons/broken.png',
                   scale: scaleIcon,
-                  color: Colors.red,
+                  color: Colors.blueAccent,
                 ),
               ),
             ],
@@ -360,7 +408,7 @@ class _SettingsPageState extends State<SettingsPage> {
     String _data = '';
 
     Future<void> initserver() async {
-      final initUrl = Uri.parse('http://10.0.0.158:8000/init');
+      final initUrl = Uri.parse('http://$serverAddress/init');
       try {
         final response = await http.get(initUrl);
 
@@ -391,9 +439,9 @@ class _SettingsPageState extends State<SettingsPage> {
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.arrow_back,
-                      color: Colors.red,
+                      color: Colors.blueAccent,
                       size: 90,
                     )),
                 GestureDetector(
@@ -405,7 +453,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   child: Image.asset(
                     'assets/icons/refresh.png',
                     scale: scaleIcon,
-                    color: Colors.red,
+                    color: Colors.blueAccent,
                   ),
                 ),
                 GestureDetector(
@@ -415,14 +463,13 @@ class _SettingsPageState extends State<SettingsPage> {
                   child: Image.asset(
                     'assets/icons/reboot.jpg',
                     scale: scaleIcon,
-                    colorBlendMode: BlendMode.overlay,
-                    color: Colors.red,
+                    color: Colors.blueAccent,
                   ),
                 ),
                 GestureDetector(
                   onTap: () async {
                     final Uri url = Uri.parse(
-                        'https://github.com/virusz4274/valorant_observer');
+                        'https://github.com/virusz4274/valorant_observer/releases');
                     if (!await launchUrl(url)) {
                       throw 'Could not launch $url';
                     }
@@ -430,7 +477,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   child: Image.asset(
                     'assets/icons/download.png',
                     scale: scaleIcon,
-                    color: Colors.red,
+                    color: Colors.blueAccent,
                   ),
                 ),
               ],
