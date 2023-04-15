@@ -104,8 +104,8 @@ if __name__ == "__main__":
      Use the following details to connect using app
     '''
     )
-    print('IP ADDRESS :', local_ip_address)
-    print('PORT : 4274')
+    print('    IP ADDRESS :', local_ip_address)
+    print('    PORT : 4274')
     print('''
     *********************************************************************************************************************
     ''')

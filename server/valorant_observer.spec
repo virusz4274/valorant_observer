@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(
-    ['mainf.py'],
+    ['valorant_observer.py'],
     pathex=[],
     binaries=[],
     datas=[],
@@ -28,7 +28,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name='mainf',
+    name='valorant_observer',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
