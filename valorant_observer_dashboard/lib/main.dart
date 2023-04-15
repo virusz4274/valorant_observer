@@ -48,6 +48,22 @@ class _ConnectionPageState extends State<ConnectionPage> {
   final serverAddressController = TextEditingController();
   final serverPortController = TextEditingController();
 
+  Future<void> testConnection() async {
+    final testUrl = Uri.parse('http://10.0.0.214:4274/');
+    try {
+      final response = await http.get(testUrl);
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        print('********************************');
+        print(data.toString());
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      throw Exception('Error: $e');
+    }
+  }
+
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -83,7 +99,8 @@ class _ConnectionPageState extends State<ConnectionPage> {
             TextButton(
                 onPressed: () {
                   serverAddress =
-                      'http://${serverAddressController.text}${serverPortController.text}';
+                      'http://${serverAddressController.text}:${serverPortController.text}';
+                  testConnection();
                   Navigator.popAndPushNamed(context, '/dashboard');
                 },
                 child: const Text('Connect'))
@@ -104,20 +121,22 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   var defenders;
   var attackers;
-  var agent1Image = 'assets/agents/Astra_icon.webp';
-  var agent2Image = 'assets/agents/Astra_icon.webp';
-  var agent3Image = 'assets/agents/Astra_icon.webp';
-  var agent4Image = 'assets/agents/Astra_icon.webp';
-  var agent5Image = 'assets/agents/Astra_icon.webp';
-  var agent6Image = 'assets/agents/Astra_icon.webp';
-  var agent7Image = 'assets/agents/Astra_icon.webp';
-  var agent8Image = 'assets/agents/Astra_icon.webp';
-  var agent9Image = 'assets/agents/Astra_icon.webp';
-  var agent10Image = 'assets/agents/Astra_icon.webp';
+  var agent1Image = 'assets/agents/ASTRA_icon.webp';
+  var agent2Image = 'assets/agents/YORU_icon.webp';
+  var agent3Image = 'assets/agents/SAGE_icon.webp';
+  var agent4Image = 'assets/agents/OMEN_icon.webp';
+  var agent5Image = 'assets/agents/KAYO_icon.webp';
+  var agent6Image = 'assets/agents/RAZE_icon.webp';
+  var agent7Image = 'assets/agents/SAGE_icon.webp';
+  var agent8Image = 'assets/agents/BRIMSTONE_icon.webp';
+  var agent9Image = 'assets/agents/REYNA_icon.webp';
+  var agent10Image = 'assets/agents/KILLJOY_icon.webp';
   String _data = '';
 
   Future<void> fetchAgents() async {
-    final agentsUrl = Uri.parse('http://$serverAddress/agents');
+    final agentsUrl = Uri.parse('$serverAddress/agents');
+    print('******************************************************');
+    print(agentsUrl);
     try {
       final response = await http.get(agentsUrl);
       if (response.statusCode == 200) {
@@ -154,7 +173,7 @@ class _DashboardState extends State<Dashboard> {
   Future<void> switchAgents(String agent) async {
     HapticFeedback.vibrate();
     HapticFeedback.vibrate();
-    final agentControlUrl = Uri.parse('http://$serverAddress/control/$agent');
+    final agentControlUrl = Uri.parse('$serverAddress/control/$agent');
     try {
       final response = await http.get(agentControlUrl);
       if (response.statusCode == 200) {
@@ -170,7 +189,7 @@ class _DashboardState extends State<Dashboard> {
   Future<void> gameControl(String control) async {
     HapticFeedback.vibrate();
     HapticFeedback.vibrate();
-    final agentControlUrl = Uri.parse('http://$serverAddress/control/$control');
+    final agentControlUrl = Uri.parse('$serverAddress/control/$control');
     try {
       final response = await http.get(agentControlUrl);
       if (response.statusCode == 200) {
@@ -350,8 +369,8 @@ class _DashboardState extends State<Dashboard> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               GestureDetector(
-                onTap: () {
-                  fetchAgents();
+                onTap: () async {
+                  await fetchAgents();
                   Future.delayed(const Duration(seconds: 2));
                   Navigator.pushNamed(context, '/settings');
                 },
@@ -408,7 +427,7 @@ class _SettingsPageState extends State<SettingsPage> {
     String _data = '';
 
     Future<void> initserver() async {
-      final initUrl = Uri.parse('http://$serverAddress/init');
+      final initUrl = Uri.parse('$serverAddress/init');
       try {
         final response = await http.get(initUrl);
 
