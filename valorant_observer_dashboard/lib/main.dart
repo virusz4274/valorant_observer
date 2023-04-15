@@ -49,7 +49,7 @@ class _ConnectionPageState extends State<ConnectionPage> {
   final serverPortController = TextEditingController();
 
   Future<void> testConnection() async {
-    final testUrl = Uri.parse('http://10.0.0.214:4274/');
+    final testUrl = Uri.parse('$serverAddress/');
     try {
       final response = await http.get(testUrl);
       if (response.statusCode == 200) {
