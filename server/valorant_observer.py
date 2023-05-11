@@ -83,12 +83,15 @@ async def control(agent: str):
 async def game(action: str):
     if action == 'Molly':
         pyautogui.press('f')
+        print('Molly')
     if action == 'Cam':
         pyautogui.press('=')
+        print('Cam')
     if action == 'Score':
         with pyautogui.hold('tab'):
             pyautogui.sleep(seconds=2)
-
+            print('Score')
+    return {"message": "Done " + action}
 
 
 

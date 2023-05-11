@@ -189,7 +189,7 @@ class _DashboardState extends State<Dashboard> {
   Future<void> gameControl(String control) async {
     HapticFeedback.vibrate();
     HapticFeedback.vibrate();
-    final agentControlUrl = Uri.parse('$serverAddress/control/$control');
+    final agentControlUrl = Uri.parse('$serverAddress/game/$control');
     try {
       final response = await http.get(agentControlUrl);
       if (response.statusCode == 200) {
@@ -371,7 +371,6 @@ class _DashboardState extends State<Dashboard> {
               GestureDetector(
                 onTap: () async {
                   await fetchAgents();
-                  Future.delayed(const Duration(seconds: 2));
                   Navigator.pushNamed(context, '/settings');
                 },
                 child: Image.asset(
@@ -391,9 +390,11 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () async{
+                  await fetchAgents();
+                },
                 child: Image.asset(
-                  'assets/icons/broken.png',
+                  'assets/icons/refresh.png',
                   scale: scaleIcon,
                   color: Colors.blueAccent,
                 ),
@@ -445,6 +446,8 @@ class _SettingsPageState extends State<SettingsPage> {
         });
       }
     }
+
+
 
     const scaleIcon = 2.0;
     return Scaffold(

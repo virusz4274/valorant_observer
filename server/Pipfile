@@ -4,21 +4,19 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-numpy = "*"
-torch = "*"
-torchvision = "*"
-opencv-python = "*"
-opencv-python-headless = "*"
-scikit-learn = "*"
-pillow = "*"
-tqdm = "*"
-pyautogui = "*"
-websockets = "*"
-fastapi = "*"
-uvicorn = {extras = ["standard"], version = "*"}
-pyinstaller = "*"
+numpy = "1.24.2"
+torch = "2.0.0"
+torchvision = "0.15.1"
+opencv-python = "4.7.0.72"
+opencv-python-headless = "4.7.0.72"
+scikit-learn = "1.2.2"
+pillow = "9.5.0"
+tqdm = "4.65.0"
+pyautogui = "0.9.53"
+fastapi = "0.95.1"
+uvicorn = {extras = ["standard"], version = "0.21.1"}
 
 [dev-packages]
 
 [requires]
-python_version = "3.11"
+python_version = "3"
