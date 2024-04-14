@@ -8,9 +8,10 @@ from torchvision.datasets import ImageFolder
 
 # Set device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(f"Training on {device}")
 
 # Data loading and preprocessing
-data_dir = './Agents/training'
+data_dir = '.\\Agents\\training'
 
 transform = transforms.Compose([
     transforms.RandomHorizontalFlip(),
@@ -27,11 +28,14 @@ train_size = int(0.8 * len(full_dataset))
 val_size = len(full_dataset) - train_size
 train_dataset, val_dataset = torch.utils.data.random_split(full_dataset, [train_size, val_size])
 
+# Use 'spawn' start method for DataLoader on Windows
+start_method = 'spawn' if os.name == 'nt' else 'fork'
+
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=4)
 val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False, num_workers=4)
 
 # Load pre-trained model
-model = torchvision.models.resnet50(pretrained=True)
+model = torchvision.models.resnet50(weights=None)
 
 # Customize the last layer for the 21 classes
 num_classes = 21
@@ -90,11 +94,12 @@ def validate(model, dataloader, criterion, device):
 # Train and validate the model
 num_epochs = 100
 
-for epoch in range(num_epochs):
-    train_loss, train_acc = train(model, train_loader, criterion, optimizer, device)
-    val_loss, val_acc = validate(model, val_loader, criterion, device)
+if __name__ == '__main__':
+    for epoch in range(num_epochs):
+        train_loss, train_acc = train(model, train_loader, criterion, optimizer, device)
+        val_loss, val_acc = validate(model, val_loader, criterion, device)
 
-    print(f"Epoch [{epoch + 1}/{num_epochs}], Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.2f}%, Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.2f}%")
+        print(f"Epoch [{epoch + 1}/{num_epochs}], Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.2f}%, Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.2f}%")
 
-# Save the trained model
-torch.save(model.state_dict(), 'character_classification_model.pth')
+    # Save the trained model
+    torch.save(model.state_dict(), 'character_classification_model.pth')
