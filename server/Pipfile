@@ -3,16 +3,22 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[[source]]
+url = "https://download.pytorch.org/whl/cu121"
+verify_ssl = true
+name = "pytorch-cu121"
+
 [packages]
 numpy = "1.24.2"
-torch = "2.0.0"
-torchvision = "0.15.1"
 scikit-learn = "1.2.2"
 pillow = "9.5.0"
 tqdm = "4.65.0"
 pyautogui = "0.9.53"
-fastapi = "0.95.1"
+fastapi = "*"
 uvicorn = {extras = ["standard"], version = "0.21.1"}
+torch = "2.2.2"
+torchvision = "0.17.2"
+torchaudio = "2.2.2"
 
 [dev-packages]
 

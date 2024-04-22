@@ -8,18 +8,18 @@ from torchvision.datasets import ImageFolder
 
 # Set device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+#device = torch.device("cpu")
 print(f"Training on {device}")
 
 # Data loading and preprocessing
 data_dir = '.\\Agents\\training'
 
 transform = transforms.Compose([
-    transforms.RandomHorizontalFlip(),
-    transforms.RandomRotation(15),
-    transforms.RandomResizedCrop(224, scale=(0.8, 1.0), ratio=(0.75, 1.33)),
+    transforms.Resize((224, 224)),  # Resize the input image to the desired size
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
+
 
 full_dataset = ImageFolder(data_dir, transform=transform)
 
@@ -38,7 +38,7 @@ val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False, num_workers=4
 model = torchvision.models.resnet50(weights=None)
 
 # Customize the last layer for the 21 classes
-num_classes = 21
+num_classes = 24
 model.fc = nn.Linear(model.fc.in_features, num_classes)
 
 model = model.to(device)

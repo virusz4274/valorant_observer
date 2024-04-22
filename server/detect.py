@@ -3,15 +3,13 @@ import torch
 import torchvision.transforms as transforms
 from PIL import ImageGrab, Image
 from torchvision.models.resnet import resnet50, ResNet, Bottleneck
-
+import torch.nn as nn
 
 # Load the trained model
-def load_model(model_path):
+def load_model(model_path, num_classes):
     model = resnet50(weights=None)
-    num_classes = 21
-    model.fc = torch.nn.Linear(model.fc.in_features, num_classes)
-    model.load_state_dict(
-        torch.load(model_path, map_location=torch.device('cpu')))
+    model.fc = nn.Linear(model.fc.in_features, num_classes)
+    model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
     model.eval()
     return model
 
@@ -61,6 +59,7 @@ def split_image_into_segments(image, num_segments):
 
 
 def capture_and_save_first_segment(output_dir):
+    print("Capturing screenshot")
     # Capture the full screen
     screenshot = ImageGrab.grab()
 
@@ -84,15 +83,16 @@ def capture_and_save_first_segment(output_dir):
 
 # Example usage
 def detectwithss():
-    model_path = "character_classification_model.pth"
-    data_dir = "./Agents/training"
+    model_path = '.\\character_classification_model.pth'
+    num_classes = 24
+    data_dir = '.\\Agents\\training'
 
-    output_dir = "./screenshots"
+    output_dir = '.\\screenshots'
     capture_and_save_first_segment(output_dir)
 
-    image_path = "./screenshots/agent_segment.png"
+    image_path = '.\\screenshots\\agent_segment.png'
 
-    model = load_model(model_path)
+    model = load_model(model_path,num_classes)
     class_names = load_class_names(data_dir)
     # Load the input image and split it into segments
     input_image = Image.open(image_path).convert('RGB')
